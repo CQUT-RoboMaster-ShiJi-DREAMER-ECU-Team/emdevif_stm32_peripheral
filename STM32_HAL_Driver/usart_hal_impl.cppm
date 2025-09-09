@@ -55,14 +55,14 @@ inline ErrorCode uartReceiveToIdleDma(bool, void* handle, std::span<uint8_t> rec
     return internal::halStatusToErrorCode(status);
 }
 
-inline ErrorCode uartTransmitBlocking(bool, void* handle, std::span<uint8_t> data, const uint32_t timeout_ms)
+inline ErrorCode uartTransmitBlocking(bool, void* handle, std::span<const uint8_t> data, const uint32_t timeout_ms)
 {
     const auto status =
         HAL_UART_Transmit(static_cast<UART_HandleTypeDef*>(handle), data.data(), data.size_bytes(), timeout_ms);
     return internal::halStatusToErrorCode(status);
 }
 
-inline ErrorCode uartTransmitInterrupt(bool, void* handle, std::span<uint8_t> data, uint32_t)
+inline ErrorCode uartTransmitInterrupt(bool, void* handle, std::span<const uint8_t> data, uint32_t)
 {
     if (HAL_UART_GetState(static_cast<UART_HandleTypeDef*>(handle)) != HAL_UART_STATE_READY) {
         return ErrorCode::PermissionDenied;
@@ -72,7 +72,7 @@ inline ErrorCode uartTransmitInterrupt(bool, void* handle, std::span<uint8_t> da
     return internal::halStatusToErrorCode(status);
 }
 
-inline ErrorCode uartTransmitDma(bool, void* handle, std::span<uint8_t> data, uint32_t)
+inline ErrorCode uartTransmitDma(bool, void* handle, std::span<const uint8_t> data, uint32_t)
 {
     if (HAL_UART_GetState(static_cast<UART_HandleTypeDef*>(handle)) != HAL_UART_STATE_READY) {
         return ErrorCode::PermissionDenied;
