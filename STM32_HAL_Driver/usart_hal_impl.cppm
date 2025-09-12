@@ -12,10 +12,10 @@ module;
 
 #include "usart.h"
 
-export module emdevif.stm32_peripheral.hal.usart;
+export module emdevif.stm32Peripheral.hal.usart;
 
-import emdevif.stm32_peripheral.hal.status_mapper;
-export import emdevif.error_handler;
+import emdevif.stm32Peripheral.hal.statusMapper;
+export import emdevif.errorHandler;
 
 export namespace emdevif::stm32hal {
 

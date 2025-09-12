@@ -10,9 +10,9 @@ module;
 
 #include "main.h"
 
-export module emdevif.stm32_peripheral.hal.status_mapper;
+export module emdevif.stm32Peripheral.hal.statusMapper;
 
-export import emdevif.error_handler;
+export import emdevif.errorHandler;
 
 export namespace emdevif::stm32hal::internal {
 
