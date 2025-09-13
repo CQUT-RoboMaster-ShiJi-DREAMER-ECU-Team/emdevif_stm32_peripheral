@@ -35,6 +35,12 @@ function(chooseFilesToInclude peripheralList driverList out_chosenFiles)
 are not equal. Please make them corresponding to each element one by one.")
     endif ()
 
+    list(FIND driverList "HAL" firstHalDriverElementIndex)
+    list(FIND driverList "BOTH" firstBothElementIndex)
+    if ((NOT (firstHalDriverElementIndex EQUAL -1)) OR (NOT (firstBothElementIndex EQUAL -1)))
+        list(APPEND chosenFiles "STM32_HAL_Driver/hal_status_mapper.cppm")
+    endif ()
+
     math(EXPR maxIndex "${peripheralListLength} - 1")
     foreach (index RANGE ${maxIndex})
         list(GET driverList     ${index} driver)
@@ -65,6 +71,5 @@ chooseFilesToInclude(
 
 target_sources(${PROJECT_NAME}
     PUBLIC FILE_SET emdevif_stm32_peripheral_modules TYPE CXX_MODULES
-        FILES STM32_HAL_Driver/hal_status_mapper.cppm
-              ${emdevifStm32HalDriverImplModules}
+        FILES ${emdevifStm32HalDriverImplModules}
 )
