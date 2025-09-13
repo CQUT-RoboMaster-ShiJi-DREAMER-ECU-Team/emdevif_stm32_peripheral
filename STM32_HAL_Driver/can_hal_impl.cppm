@@ -37,6 +37,7 @@ ErrorCode canAddTxMessage(bool, void* handle, const Can::DataHeader& header, std
     }
 
     const auto status = HAL_CAN_AddTxMessage(handle, &hal_tx_header, data.data(), &tx_mailbox);
+    return internal::halStatusToErrorCode(status);
 }
 
 }  // namespace emdevif::stm32hal
