@@ -8,16 +8,6 @@ EMDEVIF_DEVICE_ENABLED_PERIPHERAL_LIST")
 
 project(emdevif_stm32_peripheral C CXX ASM)
 
-if (NOT (TARGET emdevif_core))
-    message(FATAL_ERROR "${PROJECT_NAME} requires target \"emdevif_core\"!")
-endif ()
-if (NOT (TARGET emdevif_compile_options))
-    message(FATAL_ERROR "${PROJECT_NAME} requires target \"emdevif_compile_options\"!")
-endif ()
-if (NOT (TARGET emdevif_stm32cubemx_support))
-    message(FATAL_ERROR "${PROJECT_NAME} requires target \"emdevif_stm32cubemx_support\"!")
-endif ()
-
 add_library(${PROJECT_NAME} STATIC)
 
 target_link_libraries(${PROJECT_NAME}
