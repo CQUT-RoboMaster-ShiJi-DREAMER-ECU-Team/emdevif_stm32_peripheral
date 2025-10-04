@@ -22,7 +22,7 @@ export import emdevif.errorHandler;
 
 export namespace emdevif::stm32hal {
 
-ErrorCode canAddTxMessage(bool, void* handle, const Can::DataHeader& header, std::span<const uint8_t> data)
+inline ErrorCode canAddTxMessage(bool, void* handle, const Can::DataHeader& header, std::span<const uint8_t> data)
 {
     uint32_t tx_mailbox;
 
