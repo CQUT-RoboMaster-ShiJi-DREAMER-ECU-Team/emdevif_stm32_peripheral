@@ -54,8 +54,8 @@ are not equal. Please make them corresponding to each element one by one.")
 endfunction()
 
 chooseFilesToInclude(
-    ${EMDEVIF_DEVICE_ENABLED_PERIPHERAL_LIST}
-    ${EMDEVIF_STM32_PERIPHERAL_DRIVER}
+    "${EMDEVIF_DEVICE_ENABLED_PERIPHERAL_LIST}"
+    "${EMDEVIF_STM32_PERIPHERAL_DRIVER}"
     emdevifStm32HalDriverImplModules
 )
 
