@@ -74,7 +74,7 @@ export inline void pwmDisable(void* handle) noexcept
     HAL_TIM_PWM_Stop(pwm_handle->htim, pwm_handle->channel);
 }
 
-export void setRatio(void* handle, const uint8_t ratio) noexcept
+export void pwmSetRatio(void* handle, const uint8_t ratio) noexcept
 {
     const uint32_t real_ratio = ratio * 100;
     auto* const pwm_handle = static_cast<PwmHandle*>(handle);
