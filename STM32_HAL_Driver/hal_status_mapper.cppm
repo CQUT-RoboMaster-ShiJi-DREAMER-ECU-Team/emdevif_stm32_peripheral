@@ -8,6 +8,8 @@
 
 module;
 
+#include <cstdint>  // NOLINT
+
 #include "main.h"
 
 export module emdevif.stm32Peripheral.hal.statusMapper;
