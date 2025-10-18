@@ -16,12 +16,22 @@ export module emdevif.stm32Peripheral.hal.usart;
 
 import emdevif.stm32Peripheral.hal.statusMapper;
 export import emdevif.errorHandler;
+import emdevif.peripheral.model.serial;
 
 export namespace emdevif::stm32hal {
 
 constexpr uint32_t uart_max_delay = HAL_MAX_DELAY;
 
 constexpr uint32_t uart_none_blocking = 0U;
+
+inline SerialModel::State uartGetState(bool, void* handle) noexcept
+{
+    if (HAL_UART_GetState(static_cast<UART_HandleTypeDef*>(handle)) == HAL_UART_STATE_READY) {
+        return SerialModel::Ready;
+    }
+
+    return SerialModel::Busy;
+}
 
 inline ErrorCode uartReceiveBlocking(bool, void* handle, std::span<uint8_t> received_data, const uint32_t timeout_ms)
 {

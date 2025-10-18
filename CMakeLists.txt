@@ -12,7 +12,7 @@ add_library(${PROJECT_NAME} STATIC)
 
 target_link_libraries(${PROJECT_NAME}
     PUBLIC emdevif_core
-    PRIVATE emdevif_compile_options emdevif_stm32cubemx_support
+    PRIVATE emdevif_compile_options emdevif_stm32cubemx_support emdevif_peripheral_model
 )
 
 function(chooseFilesToInclude peripheralList driverList out_chosenFiles)
