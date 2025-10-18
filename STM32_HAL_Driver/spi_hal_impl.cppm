@@ -30,14 +30,14 @@ inline ErrorCode spiTransmitReceiveBlock(const bool in_isr,
                                          const std::span<uint8_t> rx_data,
                                          const uint32_t timeout_ms) noexcept
 {
-    EMDEVIF_ASSERT(tx_data.size() == rx_data.size());
+    EMDEVIF_ASSERT(tx_data.size_bytes() == rx_data.size_bytes());
 
     EMDEVIF_UNUSED(in_isr);
 
     const auto status = HAL_SPI_TransmitReceive(static_cast<SPI_HandleTypeDef*>(handle),
                                                 tx_data.data(),
                                                 rx_data.data(),
-                                                tx_data.size(),
+                                                tx_data.size_bytes(),
                                                 timeout_ms);
     return internal::halStatusToErrorCode(status);
 }
@@ -48,7 +48,7 @@ inline ErrorCode spiTransmitReceiveInterrupt(const bool in_isr,
                                              const std::span<uint8_t> rx_data,
                                              const uint32_t timeout_ms) noexcept
 {
-    EMDEVIF_ASSERT(tx_data.size() == rx_data.size());
+    EMDEVIF_ASSERT(tx_data.size_bytes() == rx_data.size_bytes());
 
     EMDEVIF_UNUSED(in_isr);
     EMDEVIF_UNUSED(timeout_ms);
@@ -56,7 +56,7 @@ inline ErrorCode spiTransmitReceiveInterrupt(const bool in_isr,
     const auto status = HAL_SPI_TransmitReceive_IT(static_cast<SPI_HandleTypeDef*>(handle),
                                                    tx_data.data(),
                                                    rx_data.data(),
-                                                   tx_data.size());
+                                                   tx_data.size_bytes());
     return internal::halStatusToErrorCode(status);
 }
 
@@ -66,7 +66,7 @@ inline ErrorCode spiTransmitReceiveDma(const bool in_isr,
                                        const std::span<uint8_t> rx_data,
                                        const uint32_t timeout_ms) noexcept
 {
-    EMDEVIF_ASSERT(tx_data.size() == rx_data.size());
+    EMDEVIF_ASSERT(tx_data.size_bytes() == rx_data.size_bytes());
 
     EMDEVIF_UNUSED(in_isr);
     EMDEVIF_UNUSED(timeout_ms);
@@ -74,7 +74,7 @@ inline ErrorCode spiTransmitReceiveDma(const bool in_isr,
     const auto status = HAL_SPI_TransmitReceive_DMA(static_cast<SPI_HandleTypeDef*>(handle),
                                                     tx_data.data(),
                                                     rx_data.data(),
-                                                    tx_data.size());
+                                                    tx_data.size_bytes());
     return internal::halStatusToErrorCode(status);
 }
 
