@@ -1,6 +1,5 @@
 /**
  * @file spi_hal_impl.cppm
- * @module emdevif.stm32Peripheral.hal.spi
  * @author DuYicheng
  * @date 2025-10-04
  * @brief STM32 HAL 库的 SPI 收发函数的封装，用以 emdevif::Spi 类的回调函数

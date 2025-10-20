@@ -1,6 +1,5 @@
 /**
  * @file hal_status_mapper.cppm
- * @module emdevif.stm32_peripheral.hal.status_mapper
  * @author DuYicheng
  * @date 2025-09-09
  * @brief 将 HAL_Status 映射到 emdevif::ErrorCode

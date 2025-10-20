@@ -1,6 +1,5 @@
 /**
  * @file pwm_hal_impl.cppm
- * @module emdevif.stm32Peripheral.hal.pwm
  * @author DuYicheng
  * @date 2025-10-05
  * @brief STM32 HAL 库的 PWM 函数的封装，用以 emdevif::Pwm 类的回调函数

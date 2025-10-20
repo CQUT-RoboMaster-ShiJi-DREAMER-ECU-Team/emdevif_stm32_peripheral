@@ -1,6 +1,5 @@
 /**
  * @file usart_hal_impl.cppm
- * @module emdevif.stm32_peripheral.usart
  * @author DuYicheng
  * @date 2025-09-09
  * @brief STM32 HAL 库的 USART 收发函数的封装，用以 emdevif::Serial 类的回调函数
