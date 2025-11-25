@@ -52,7 +52,7 @@ are not equal. Please make them corresponding to each element one by one.")
             message(FATAL_ERROR "Unknown item in EMDEVIF_STM32_PERIPHERAL_DRIVER!")
         endif ()
 
-        message("[${PROJECT_NAME}]: Enabled peripheral \"${peripheral}\" with driver ${messageDriverName}")
+        message(STATUS "[${PROJECT_NAME}]: Enabled peripheral \"${peripheral}\" with driver ${messageDriverName}")
     endforeach ()
 
     set(${out_chosenFiles} ${chosenFiles} PARENT_SCOPE)
