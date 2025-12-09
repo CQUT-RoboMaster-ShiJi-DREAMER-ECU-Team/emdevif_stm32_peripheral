@@ -1,7 +1,5 @@
 /**
  * @file hal_status_mapper.cppm
- * @author DuYicheng
- * @date 2025-09-09
  * @brief 将 HAL_Status 映射到 emdevif::ErrorCode
  */
 

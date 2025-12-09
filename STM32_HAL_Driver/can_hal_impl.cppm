@@ -1,7 +1,5 @@
 /**
  * @file can_hal_impl.cppm
- * @author DuYicheng
- * @date 2025-09-12
  * @brief STM32 HAL 库的 CAN 收发函数的封装，用以 emdevif::Can 类的回调函数
  */
 

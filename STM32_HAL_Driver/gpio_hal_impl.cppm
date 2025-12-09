@@ -1,7 +1,5 @@
 /**
  * @file gpio_hal_impl.cppm
- * @author DuYicheng
- * @date 2025-10-04
  * @brief STM32 HAL 库的 GPIO 函数的封装，用以 emdevif::Gpio 类的回调函数
  */
 
