@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.28...4.0.2)
 
 set(EMDEVIF_DEVICE_ENABLED_PERIPHERAL_LIST "" CACHE STRING "Add enabled peripheral in this list. \
 For example, set it to \"USART;CAN\" in order to enable USART and CAN peripheral")
