@@ -1,0 +1,115 @@
+/**
+ * @file pwm.hpp
+ * @brief
+ */
+
+#pragma once
+#ifndef EMDEVIF_STM32_PERIPHERAL_HAL_PWM_HPP
+    #define EMDEVIF_STM32_PERIPHERAL_HAL_PWM_HPP
+
+    #include "emdevif/core/detail/config.hpp"
+    #include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
+
+    #ifndef EMDEVIF_MODULE_INTERFACE_UNIT
+        #include <cstdint>
+
+        #include "tim.h"
+        #include "emdevif/core/fatal_handler.h"
+
+        #include "emdevif/core/error_handler.hpp"
+    #endif
+
+namespace emdevif::stm32hal {
+
+EMDEVIF_MODULE_EXPORT struct PwmHandle {
+    TIM_HandleTypeDef* htim;
+    uint32_t channel;
+};
+
+namespace detail {
+
+inline uint32_t pwmGetCounterMode(const PwmHandle* pwm_handle) noexcept
+{
+    return (READ_BIT(pwm_handle->htim->Instance->CR1, TIM_CR1_DIR) == 0 ? TIM_COUNTERMODE_UP : TIM_COUNTERMODE_DOWN);
+}
+
+inline uint32_t pwmGetPwmMode(const PwmHandle* pwm_handle) noexcept
+{
+    const auto [htim, channel] = *pwm_handle;
+
+    uint32_t mode;
+
+    switch (channel) {
+    case TIM_CHANNEL_1:
+        mode = READ_BIT(htim->Instance->CCMR1, TIM_CCMR1_OC1M);
+        break;
+    case TIM_CHANNEL_2:
+        mode = READ_BIT(htim->Instance->CCMR1, TIM_CCMR1_OC2M);
+        break;
+    case TIM_CHANNEL_3:
+        mode = READ_BIT(htim->Instance->CCMR2, TIM_CCMR2_OC3M);
+        break;
+    case TIM_CHANNEL_4:
+        mode = READ_BIT(htim->Instance->CCMR2, TIM_CCMR2_OC4M);
+        break;
+    default:
+        EMDEVIF_FATAL_HANDLER("Invalid arguments!");
+    }
+
+    return mode;
+}
+
+}  // namespace detail
+
+EMDEVIF_MODULE_EXPORT inline void pwmEnable(void* handle) noexcept
+{
+    const auto pwm_handle = static_cast<PwmHandle*>(handle);
+
+    HAL_TIM_PWM_Start(pwm_handle->htim, pwm_handle->channel);
+}
+
+EMDEVIF_MODULE_EXPORT inline void pwmDisable(void* handle) noexcept
+{
+    const auto pwm_handle = static_cast<PwmHandle*>(handle);
+
+    HAL_TIM_PWM_Stop(pwm_handle->htim, pwm_handle->channel);
+}
+
+EMDEVIF_MODULE_EXPORT inline void pwmSetRatio(void* handle, const uint8_t ratio) noexcept
+{
+    const uint32_t real_ratio = ratio * 100;
+    auto* const pwm_handle = static_cast<PwmHandle*>(handle);
+    const auto [htim, channel] = *pwm_handle;
+    const uint32_t autoreload_value = __HAL_TIM_GET_AUTORELOAD(pwm_handle->htim);
+
+    uint32_t real_compare_value = real_ratio * autoreload_value / 10000U;
+
+    const auto pwm_mode = detail::pwmGetPwmMode(pwm_handle);
+    const auto pwm_counter_mode = detail::pwmGetCounterMode(pwm_handle);
+    if (pwm_mode == TIM_OCMODE_PWM1) {
+        if (pwm_counter_mode == TIM_COUNTERMODE_UP) {
+            // do nothing
+        }
+        else {
+            real_compare_value = autoreload_value - real_compare_value;
+        }
+    }
+    else if (pwm_mode == TIM_OCMODE_PWM2) {
+        if (pwm_counter_mode == TIM_COUNTERMODE_UP) {
+            real_compare_value = autoreload_value - real_compare_value;
+        }
+        else {
+            // do nothing
+        }
+    }
+
+    if (real_compare_value > autoreload_value) {
+        real_compare_value = autoreload_value;
+    }
+
+    __HAL_TIM_SET_COMPARE(htim, channel, real_compare_value);
+}
+
+}  // namespace emdevif::stm32hal
+
+#endif  // !EMDEVIF_STM32_PERIPHERAL_HAL_PWM_HPP
