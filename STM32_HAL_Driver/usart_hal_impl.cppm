@@ -11,7 +11,7 @@ module;
 
 #define EMDEVIF_MODULE_INTERFACE_UNIT
 
-export module emdevif.stm32Peripheral.hal.usart;
+export module emdevif.stm32_peripheral.hal.usart;
 
 import emdevif.core.error_handler;
 import emdevif.peripheral.model.serial;
