@@ -1,17 +1,22 @@
 # emdevif_stm32_peripheral
 
-属于 emdevif 的一个扩展，用于提供一部分 STM32 HAL/LL 外设库的封装
+`emdevif` 的 STM32 外设扩展，提供 HAL/LL 外设封装实现。
 
-## 使用方法
+## 依赖前提
 
-参考 [emdevif](https://github.com/CQUT-RoboMaster-ShiJi-DREAMER-ECU-Team/emdevif.git) 中的示例项目文件结构的配置，
-您可以使用 `git clone` 或 `git submodule add` 将本仓库添加到一个合适的目录中，例如：
+- 已集成 `emdevif`
+- 已启用并配置 STM32 工程（通常配合 `EMDEVIF_USE_STM32CUBEMX`）
 
-```Shell
-git submodule add https://github.com/CQUT-RoboMaster-ShiJi-DREAMER-ECU-Team/emdevif_stm32_peripheral.git emdevif_collection/emdevif_stm32_peripheral
-```
+## 配置项
 
-这样，文件结构将会变成：
+| 变量 | 默认值 | 说明 |
+|---|---:|---|
+| `EMDEVIF_DEVICE_ENABLED_PERIPHERAL_LIST` | `""` | 启用的外设列表（大写，分号分隔），如 `"USART;CAN;SPI"` |
+| `EMDEVIF_STM32_PERIPHERAL_DRIVER` | `""` | 与上表逐项对应，取 `HAL` / `LL` / `BOTH` |
+
+两列表的元素数量必须一致，且按位置一一对应。
+
+## 示例
 
 ```
 project_root
@@ -28,19 +33,21 @@ project_root
 └── ...
 ```
 
-### 配置
+```cmake
+set(EMDEVIF_DEVICE_ENABLED_PERIPHERAL_LIST "USART;CAN;SPI" CACHE INTERNAL "" FORCE)
+set(EMDEVIF_STM32_PERIPHERAL_DRIVER "HAL;LL;BOTH" CACHE INTERNAL "" FORCE)
 
-| CMake 变量                               | 类型     | 默认值  | 说明                                                                                                                                                                                                                                                                         |
-|----------------------------------------|--------|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| EMDEVIF_DEVICE_ENABLED_PERIPHERAL_LIST | String | `""` | 要启用的外设列表。外设名称必须全部大写，并且用分号间隔开。<br>例如将此变量设置为 `"USART;CAN"` 后，将会启用 USART 和 CAN 外设                                                                                                                                                                                             |
-| EMDEVIF_STM32_PERIPHERAL_DRIVER        | String | `""` | 要使用的库的种类列表，每个元素在 `HAL`、`LL`、`BOTH` 中取，每个元素的位置与 `EMDEVIF_DEVICE_ENABLED_PERIPHERAL_LIST` 的元素对应。<br>例如将 `EMDEVIF_DEVICE_ENABLED_PERIPHERAL_LIST` 设置为 `"USART;CAN;SPI"`，<br>将 `EMDEVIF_STM32_PERIPHERAL_DRIVER` 设置为 `"HAL;LL;BOTH"` 后，USART 将使用 HAL 库，CAN 使用 LL 库，SPI 两种库都使用。 |
-
-例如：
-
-```CMake
-set(EMDEVIF_DEVICE_ENABLED_PERIPHERAL_LIST "USART;CAN" CACHE STRING "" FORCE)
-set(EMDEVIF_STM32_PERIPHERAL_DRIVER "LL;HAL" CACHE STRING "" FORCE)
-add_subdirectory(
-    # path to emdevif_stm32_peripheral
-)  # 需要确保这一句在设置变量之后
+add_subdirectory(emdevif_collection/emdevif_stm32_peripheral)
 ```
+
+## 集成建议
+
+- 先在 CubeMX/板级工程中验证底层外设可用
+- 再通过本模块向上提供统一接口
+- 与 `emdevif_peripheral` 的 `peripheral_handle_map` 配套使用
+
+## 常见问题
+
+- 配置长度不一致：CMake 会直接报错
+- 外设名大小写错误：不会匹配到实现文件
+- HAL/LL 选择与底层工程不一致：会导致链接或运行异常
