@@ -1,6 +1,6 @@
 /**
  * @file spi.hpp
- * @brief
+ * @brief STM32 HAL SPI 外设适配，封装 HAL SPI 收发函数供 emdevif::Spi 使用
  */
 
 #pragma once
@@ -25,6 +25,15 @@
 EMDEVIF_MODULE_EXPORT
 namespace emdevif::stm32hal {
 
+/**
+ * @brief SPI 阻塞式全双工收发
+ * @param in_isr 是否在中断上下文中调用（当前未使用）
+ * @param[in] handle SPI 外设句柄，指向 HAL SPI_HandleTypeDef
+ * @param tx_data 发送数据缓冲区
+ * @param[out] rx_data 接收数据缓冲区，长度须与 tx_data 一致
+ * @param timeout_ms 超时时间（毫秒）
+ * @return 操作结果错误码
+ */
 inline ErrorCode spiTransmitReceiveBlock(const bool in_isr,
                                          void* handle,
                                          const std::span<const uint8_t> tx_data,
@@ -43,6 +52,15 @@ inline ErrorCode spiTransmitReceiveBlock(const bool in_isr,
     return detail::halStatusToErrorCode(status);
 }
 
+/**
+ * @brief SPI 中断模式全双工收发
+ * @param in_isr 是否在中断上下文中调用（当前未使用）
+ * @param[in] handle SPI 外设句柄，指向 HAL SPI_HandleTypeDef
+ * @param tx_data 发送数据缓冲区
+ * @param[out] rx_data 接收数据缓冲区，长度须与 tx_data 一致
+ * @param timeout_ms 超时时间（当前未使用）
+ * @return 操作结果错误码
+ */
 inline ErrorCode spiTransmitReceiveInterrupt(const bool in_isr,
                                              void* handle,
                                              const std::span<const uint8_t> tx_data,
@@ -61,6 +79,15 @@ inline ErrorCode spiTransmitReceiveInterrupt(const bool in_isr,
     return detail::halStatusToErrorCode(status);
 }
 
+/**
+ * @brief SPI DMA 模式全双工收发
+ * @param in_isr 是否在中断上下文中调用（当前未使用）
+ * @param[in] handle SPI 外设句柄，指向 HAL SPI_HandleTypeDef
+ * @param tx_data 发送数据缓冲区
+ * @param[out] rx_data 接收数据缓冲区，长度须与 tx_data 一致
+ * @param timeout_ms 超时时间（当前未使用）
+ * @return 操作结果错误码
+ */
 inline ErrorCode spiTransmitReceiveDma(const bool in_isr,
                                        void* handle,
                                        const std::span<const uint8_t> tx_data,

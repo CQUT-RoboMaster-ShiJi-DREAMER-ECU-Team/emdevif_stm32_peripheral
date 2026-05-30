@@ -1,6 +1,6 @@
 /**
  * @file pwm.hpp
- * @brief
+ * @brief STM32 HAL PWM 外设适配，封装 HAL PWM 启停及占空比设置函数供 emdevif::Pwm 使用
  */
 
 #pragma once
@@ -21,18 +21,31 @@
 
 namespace emdevif::stm32hal {
 
+/**
+ * @brief PWM 句柄，封装 STM32 定时器句柄和通道号
+ */
 EMDEVIF_MODULE_EXPORT struct PwmHandle {
-    TIM_HandleTypeDef* htim;
-    uint32_t channel;
+    TIM_HandleTypeDef* htim; ///< 定时器句柄
+    uint32_t channel;        ///< PWM 通道号
 };
 
 namespace detail {
 
+/**
+ * @brief 获取 PWM 定时器的计数方向模式
+ * @param[in] pwm_handle PWM 句柄指针
+ * @return 计数方向模式，TIM_COUNTERMODE_UP 或 TIM_COUNTERMODE_DOWN
+ */
 inline uint32_t pwmGetCounterMode(const PwmHandle* pwm_handle) noexcept
 {
     return (READ_BIT(pwm_handle->htim->Instance->CR1, TIM_CR1_DIR) == 0 ? TIM_COUNTERMODE_UP : TIM_COUNTERMODE_DOWN);
 }
 
+/**
+ * @brief 获取 PWM 通道的输出比较模式
+ * @param[in] pwm_handle PWM 句柄指针
+ * @return PWM 输出比较模式（如 TIM_OCMODE_PWM1 或 TIM_OCMODE_PWM2）
+ */
 inline uint32_t pwmGetPwmMode(const PwmHandle* pwm_handle) noexcept
 {
     const auto [htim, channel] = *pwm_handle;
@@ -61,6 +74,10 @@ inline uint32_t pwmGetPwmMode(const PwmHandle* pwm_handle) noexcept
 
 }  // namespace detail
 
+/**
+ * @brief 使能 PWM 输出
+ * @param[in] handle 指向 PwmHandle 的指针
+ */
 EMDEVIF_MODULE_EXPORT inline void pwmEnable(void* handle) noexcept
 {
     const auto pwm_handle = static_cast<PwmHandle*>(handle);
@@ -68,6 +85,10 @@ EMDEVIF_MODULE_EXPORT inline void pwmEnable(void* handle) noexcept
     HAL_TIM_PWM_Start(pwm_handle->htim, pwm_handle->channel);
 }
 
+/**
+ * @brief 禁止 PWM 输出
+ * @param[in] handle 指向 PwmHandle 的指针
+ */
 EMDEVIF_MODULE_EXPORT inline void pwmDisable(void* handle) noexcept
 {
     const auto pwm_handle = static_cast<PwmHandle*>(handle);
@@ -75,6 +96,13 @@ EMDEVIF_MODULE_EXPORT inline void pwmDisable(void* handle) noexcept
     HAL_TIM_PWM_Stop(pwm_handle->htim, pwm_handle->channel);
 }
 
+/**
+ * @brief 设置 PWM 占空比
+ *
+ * 根据 PWM 模式和计数方向自动调整比较值，确保占空比语义正确。
+ * @param[in] handle 指向 PwmHandle 的指针
+ * @param ratio 占空比，取值范围 0~100（对应 0%~100%），精度为 1%
+ */
 EMDEVIF_MODULE_EXPORT inline void pwmSetRatio(void* handle, const uint8_t ratio) noexcept
 {
     const uint32_t real_ratio = ratio * 100;
