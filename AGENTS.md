@@ -22,12 +22,9 @@ emdevif_stm32_peripheral/
 - 实现文件：`STM32_{HAL|LL}_Driver/{外设小写}_{hal|ll}_impl.cppm`
 
 ## 编码规范
-本模块沿用 `emdevif` 的编码风格（`emdevif/docs/emdevif-coding-style.md`）。核心约定一致：
+本项目开发需遵循统一编码规范，详见：
 
-- 类型名 `PascalCase`，函数名 `camelCase`，变量/命名空间 `snake_case`
-- 宏 `UPPER_SNAKE_CASE`，外部可见宏统一 `EMDEVIF_STM32_*` 前缀
-- 控制语句强制大括号，行宽 120，4 空格缩进
-- 与 `emdevif_peripheral` 的 `peripheral_handle_map` 配套使用
+[https://github.com/CQUT-RoboMaster-ShiJi-DREAMER-ECU-Team/rmdev-dev/blob/main/docs/emdevif-coding-style.md](https://github.com/CQUT-RoboMaster-ShiJi-DREAMER-ECU-Team/rmdev-dev/blob/main/docs/emdevif-coding-style.md)
 
 ## 构建系统
 
@@ -73,6 +70,6 @@ emdevif_stm32_peripheral/
 - 与 `peripheral_handle_map` 的键名交互需做端到端验证。
 
 ## 参考资料
-- 编码规范（上游）：`emdevif/docs/emdevif-coding-style.md`
+- 编码规范：[https://github.com/CQUT-RoboMaster-ShiJi-DREAMER-ECU-Team/rmdev-dev/blob/main/docs/emdevif-coding-style.md](https://github.com/CQUT-RoboMaster-ShiJi-DREAMER-ECU-Team/rmdev-dev/blob/main/docs/emdevif-coding-style.md)
 - 完整使用指南：`README.md`
 - 外设映射逻辑：根 `CMakeLists.txt` 中 `chooseFilesToInclude` 函数
