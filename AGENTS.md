@@ -11,7 +11,7 @@ emdevif_stm32_peripheral/
 │   ├── hal/                 # HAL 封装头文件（如 usart.hpp, can.hpp）
 │   └── ll/                  # LL 封装头文件（如 usart.hpp）
 ├── STM32_HAL_Driver/        # HAL 封装实现（.cppm 模块文件）
-├── STM32_LL_Driver/         # LL 封装实现（.cppm 模块文件，按需创建）
+├── STM32_LL_Driver/         # LL 封装实现（.cppm 模块文件，后续支持）
 └── CMakeLists.txt
 ```
 
