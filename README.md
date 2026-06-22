@@ -5,7 +5,7 @@
 ## 依赖前提
 
 - 已集成 `emdevif`
-- 已启用并配置 STM32 工程（通常配合 `EMDEVIF_USE_STM32CUBEMX`）
+- 已提供 `emdevif_stm32cubemx_support` 目标（通常通过设置 `EMDEVIF_USE_STM32CUBEMX=ON` 由 emdevif 自动生成；若使用自定义 HAL 集成，也可手动提供同名目标）
 
 ## 配置项
 
