@@ -5,22 +5,13 @@
 
 module;
 
-#include <cstdint>
-
-#include <span>
-
 #include "spi.h"
-#include "emdevif/core/attributes_and_useful_macros.h"
-#include "emdevif/core/fatal_handler.h"
-
-#define EMDEVIF_MODULE_INTERFACE_UNIT
+#include "emdevif/stm32_peripheral/hal/spi.hpp"
 
 export module emdevif.stm32_peripheral.hal.spi;
 
-import emdevif.core.error_handler;
-
-#ifdef __clang__
-    #pragma clang diagnostic ignored "-Winclude-angled-in-module-purview"
-#endif
-
-#include "emdevif/stm32_peripheral/hal/spi.hpp"
+export namespace emdevif::stm32hal {
+    using ::emdevif::stm32hal::spiTransmitReceiveBlock;
+    using ::emdevif::stm32hal::spiTransmitReceiveInterrupt;
+    using ::emdevif::stm32hal::spiTransmitReceiveDma;
+}

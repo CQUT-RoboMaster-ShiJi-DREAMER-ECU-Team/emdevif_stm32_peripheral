@@ -5,21 +5,11 @@
 
 module;
 
-#include <cstdint>
-
-#include <span>
-
 #include "can.h"
-
-#define EMDEVIF_MODULE_INTERFACE_UNIT
+#include "emdevif/stm32_peripheral/hal/can.hpp"
 
 export module emdevif.stm32_peripheral.hal.can;
 
-import emdevif.peripheral.model.can;
-import emdevif.core.error_handler;
-
-#ifdef __clang__
-    #pragma clang diagnostic ignored "-Winclude-angled-in-module-purview"
-#endif
-
-#include "emdevif/stm32_peripheral/hal/can.hpp"
+export namespace emdevif::stm32hal {
+    using ::emdevif::stm32hal::canAddTxMessage;
+}

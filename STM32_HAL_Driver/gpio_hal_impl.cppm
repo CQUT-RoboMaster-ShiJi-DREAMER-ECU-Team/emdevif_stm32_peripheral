@@ -5,18 +5,14 @@
 
 module;
 
-#include <cstdint>
-
 #include "gpio.h"
-
-#define EMDEVIF_MODULE_INTERFACE_UNIT
+#include "emdevif/stm32_peripheral/hal/gpio.hpp"
 
 export module emdevif.stm32_peripheral.hal.gpio;
 
-import emdevif.core.error_handler;
-
-#ifdef __clang__
-    #pragma clang diagnostic ignored "-Winclude-angled-in-module-purview"
-#endif
-
-#include "emdevif/stm32_peripheral/hal/gpio.hpp"
+export namespace emdevif::stm32hal {
+    using ::emdevif::stm32hal::GpioHandle;
+    using ::emdevif::stm32hal::gpioWrite;
+    using ::emdevif::stm32hal::gpioRead;
+    using ::emdevif::stm32hal::gpioToggle;
+}

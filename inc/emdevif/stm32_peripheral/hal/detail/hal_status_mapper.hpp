@@ -7,13 +7,11 @@
 #ifndef EMDEVIF_STM32_PERIPHERAL_HAL_DETAIL_HAL_STATUS_MAPPER_HPP
     #define EMDEVIF_STM32_PERIPHERAL_HAL_DETAIL_HAL_STATUS_MAPPER_HPP
 
-    #ifndef EMDEVIF_MODULE_INTERFACE_UNIT
         #include <cstdint>
 
         #include "main.h"
 
         #include "emdevif/core/error_handler.hpp"
-    #endif
 
 namespace emdevif::stm32hal::detail {
 

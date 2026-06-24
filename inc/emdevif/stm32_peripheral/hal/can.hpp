@@ -7,10 +7,8 @@
 #ifndef EMDEVIF_STM32_PERIPHERAL_HAL_CAN_HPP
     #define EMDEVIF_STM32_PERIPHERAL_HAL_CAN_HPP
 
-    #include "emdevif/core/detail/config.hpp"
     #include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
 
-    #ifndef EMDEVIF_MODULE_INTERFACE_UNIT
         #include <cstdint>
 
         #include <span>
@@ -19,9 +17,8 @@
 
         #include "emdevif/peripheral/model/can.hpp"
         #include "emdevif/core/error_handler.hpp"
-    #endif
 
-EMDEVIF_MODULE_EXPORT
+
 namespace emdevif::stm32hal {
 
 /**

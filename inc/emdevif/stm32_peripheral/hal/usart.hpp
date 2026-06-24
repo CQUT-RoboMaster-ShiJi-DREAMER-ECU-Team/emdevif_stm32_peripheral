@@ -7,19 +7,16 @@
 #ifndef EMDEVIF_STM32_PERIPHERAL_HAL_USART_HPP
     #define EMDEVIF_STM32_PERIPHERAL_HAL_USART_HPP
 
-    #include "emdevif/core/detail/config.hpp"
     #include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
 
-    #ifndef EMDEVIF_MODULE_INTERFACE_UNIT
         #include <span>
 
         #include "usart.h"
 
         #include "emdevif/core/error_handler.hpp"
         #include "emdevif/peripheral/model/serial.hpp"
-    #endif
 
-EMDEVIF_MODULE_EXPORT
+
 namespace emdevif::stm32hal {
 
 /// UART 最大阻塞等待延时值

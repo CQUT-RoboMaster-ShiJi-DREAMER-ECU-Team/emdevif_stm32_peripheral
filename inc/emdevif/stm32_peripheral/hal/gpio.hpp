@@ -7,17 +7,13 @@
 #ifndef EMDEVIF_STM32_PERIPHERAL_HAL_GPIO_HPP
     #define EMDEVIF_STM32_PERIPHERAL_HAL_GPIO_HPP
 
-    #include "emdevif/core/detail/config.hpp"
-
-    #ifndef EMDEVIF_MODULE_INTERFACE_UNIT
         #include <cstdint>
 
         #include "gpio.h"
 
         #include "emdevif/core/error_handler.hpp"
-    #endif
 
-EMDEVIF_MODULE_EXPORT
+
 namespace emdevif::stm32hal {
 
 /**

@@ -5,19 +5,20 @@
 
 module;
 
-#include <span>
-
 #include "usart.h"
-
-#define EMDEVIF_MODULE_INTERFACE_UNIT
+#include "emdevif/stm32_peripheral/hal/usart.hpp"
 
 export module emdevif.stm32_peripheral.hal.usart;
 
-import emdevif.core.error_handler;
-import emdevif.peripheral.model.serial;
-
-#ifdef __clang__
-    #pragma clang diagnostic ignored "-Winclude-angled-in-module-purview"
-#endif
-
-#include "emdevif/stm32_peripheral/hal/usart.hpp"
+export namespace emdevif::stm32hal {
+    using ::emdevif::stm32hal::uart_max_delay;
+    using ::emdevif::stm32hal::uart_none_blocking;
+    using ::emdevif::stm32hal::uartGetState;
+    using ::emdevif::stm32hal::uartReceiveBlocking;
+    using ::emdevif::stm32hal::uartReceiveInterrupt;
+    using ::emdevif::stm32hal::uartReceiveDma;
+    using ::emdevif::stm32hal::uartReceiveToIdleDma;
+    using ::emdevif::stm32hal::uartTransmitBlocking;
+    using ::emdevif::stm32hal::uartTransmitInterrupt;
+    using ::emdevif::stm32hal::uartTransmitDma;
+}

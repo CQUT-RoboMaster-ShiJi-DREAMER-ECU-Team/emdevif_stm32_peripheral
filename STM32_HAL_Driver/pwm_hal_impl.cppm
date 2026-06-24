@@ -5,19 +5,14 @@
 
 module;
 
-#include <cstdint>
-
 #include "tim.h"
-#include "emdevif/core/fatal_handler.h"
-
-#define EMDEVIF_MODULE_INTERFACE_UNIT
+#include "emdevif/stm32_peripheral/hal/pwm.hpp"
 
 export module emdevif.stm32_peripheral.hal.pwm;
 
-import emdevif.core.error_handler;
-
-#ifdef __clang__
-    #pragma clang diagnostic ignored "-Winclude-angled-in-module-purview"
-#endif
-
-#include "emdevif/stm32_peripheral/hal/pwm.hpp"
+export namespace emdevif::stm32hal {
+    using ::emdevif::stm32hal::PwmHandle;
+    using ::emdevif::stm32hal::pwmEnable;
+    using ::emdevif::stm32hal::pwmDisable;
+    using ::emdevif::stm32hal::pwmSetRatio;
+}
