@@ -7,14 +7,13 @@
 #ifndef EMDEVIF_STM32_PERIPHERAL_HAL_USART_HPP
     #define EMDEVIF_STM32_PERIPHERAL_HAL_USART_HPP
 
-    #include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
-
-        #include <span>
+    #include <span>
 
         #include "usart.h"
 
         #include "emdevif/core/error_handler.hpp"
         #include "emdevif/peripheral/model/serial.hpp"
+        #include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
 
 
 namespace emdevif::stm32hal {

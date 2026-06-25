@@ -7,16 +7,15 @@
 #ifndef EMDEVIF_STM32_PERIPHERAL_HAL_CAN_HPP
     #define EMDEVIF_STM32_PERIPHERAL_HAL_CAN_HPP
 
-    #include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
-
-        #include <cstdint>
+    #include <cstdint>
 
         #include <span>
 
         #include "can.h"
 
-        #include "emdevif/peripheral/model/can.hpp"
         #include "emdevif/core/error_handler.hpp"
+        #include "emdevif/peripheral/model/can.hpp"
+        #include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
 
 
 namespace emdevif::stm32hal {
