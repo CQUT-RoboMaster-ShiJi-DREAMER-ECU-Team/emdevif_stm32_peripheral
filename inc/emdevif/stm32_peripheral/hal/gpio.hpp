@@ -5,14 +5,13 @@
 
 #pragma once
 #ifndef EMDEVIF_STM32_PERIPHERAL_HAL_GPIO_HPP
-    #define EMDEVIF_STM32_PERIPHERAL_HAL_GPIO_HPP
+#define EMDEVIF_STM32_PERIPHERAL_HAL_GPIO_HPP
 
-        #include <cstdint>
+#include <cstdint>
 
-        #include "gpio.h"
+#include "gpio.h"
 
-        #include "emdevif/core/error_handler.hpp"
-
+#include "emdevif/core/error_handler.hpp"
 
 namespace emdevif::stm32hal {
 
@@ -20,8 +19,8 @@ namespace emdevif::stm32hal {
  * @brief GPIO 句柄，封装 STM32 GPIO 端口和引脚号
  */
 struct GpioHandle {
-    GPIO_TypeDef* port; ///< GPIO 端口基地址
-    uint32_t pin;       ///< 引脚号
+    GPIO_TypeDef* port;  ///< GPIO 端口基地址
+    uint32_t pin;        ///< 引脚号
 };
 
 /**

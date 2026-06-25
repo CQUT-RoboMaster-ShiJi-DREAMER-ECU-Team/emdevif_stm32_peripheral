@@ -5,18 +5,17 @@
 
 #pragma once
 #ifndef EMDEVIF_STM32_PERIPHERAL_HAL_CAN_HPP
-    #define EMDEVIF_STM32_PERIPHERAL_HAL_CAN_HPP
+#define EMDEVIF_STM32_PERIPHERAL_HAL_CAN_HPP
 
-    #include <cstdint>
+#include <cstdint>
 
-        #include <span>
+#include <span>
 
-        #include "can.h"
+#include "can.h"
 
-        #include "emdevif/core/error_handler.hpp"
-        #include "emdevif/peripheral/model/can.hpp"
-        #include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
-
+#include "emdevif/core/error_handler.hpp"
+#include "emdevif/peripheral/model/can.hpp"
+#include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
 
 namespace emdevif::stm32hal {
 

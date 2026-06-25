@@ -5,24 +5,24 @@
 
 #pragma once
 #ifndef EMDEVIF_STM32_PERIPHERAL_HAL_PWM_HPP
-    #define EMDEVIF_STM32_PERIPHERAL_HAL_PWM_HPP
+#define EMDEVIF_STM32_PERIPHERAL_HAL_PWM_HPP
 
-    #include <cstdint>
+#include <cstdint>
 
-        #include "emdevif/core/fatal_handler.h"
-        #include "tim.h"
+#include "emdevif/core/fatal_handler.h"
+#include "tim.h"
 
-        #include "emdevif/core/error_handler.hpp"
-        #include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
+#include "emdevif/core/error_handler.hpp"
+#include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
 
 namespace emdevif::stm32hal {
 
 /**
  * @brief PWM 句柄，封装 STM32 定时器句柄和通道号
  */
- struct PwmHandle {
-    TIM_HandleTypeDef* htim; ///< 定时器句柄
-    uint32_t channel;        ///< PWM 通道号
+struct PwmHandle {
+    TIM_HandleTypeDef* htim;  ///< 定时器句柄
+    uint32_t channel;         ///< PWM 通道号
 };
 
 namespace detail {
@@ -74,7 +74,7 @@ inline uint32_t pwmGetPwmMode(const PwmHandle* pwm_handle) noexcept
  * @brief 使能 PWM 输出
  * @param[in] handle 指向 PwmHandle 的指针
  */
- inline void pwmEnable(void* handle) noexcept
+inline void pwmEnable(void* handle) noexcept
 {
     const auto pwm_handle = static_cast<PwmHandle*>(handle);
 
@@ -85,7 +85,7 @@ inline uint32_t pwmGetPwmMode(const PwmHandle* pwm_handle) noexcept
  * @brief 禁止 PWM 输出
  * @param[in] handle 指向 PwmHandle 的指针
  */
- inline void pwmDisable(void* handle) noexcept
+inline void pwmDisable(void* handle) noexcept
 {
     const auto pwm_handle = static_cast<PwmHandle*>(handle);
 
@@ -99,7 +99,7 @@ inline uint32_t pwmGetPwmMode(const PwmHandle* pwm_handle) noexcept
  * @param[in] handle 指向 PwmHandle 的指针
  * @param ratio 占空比，取值范围 0~100（对应 0%~100%），精度为 1%
  */
- inline void pwmSetRatio(void* handle, const uint8_t ratio) noexcept
+inline void pwmSetRatio(void* handle, const uint8_t ratio) noexcept
 {
     const uint32_t real_ratio = ratio * 100;
     auto* const pwm_handle = static_cast<PwmHandle*>(handle);

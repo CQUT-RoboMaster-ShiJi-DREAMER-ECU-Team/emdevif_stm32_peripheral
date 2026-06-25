@@ -11,8 +11,8 @@ module;
 export module emdevif.stm32_peripheral.hal.pwm;
 
 export namespace emdevif::stm32hal {
-    using ::emdevif::stm32hal::PwmHandle;
-    using ::emdevif::stm32hal::pwmEnable;
-    using ::emdevif::stm32hal::pwmDisable;
-    using ::emdevif::stm32hal::pwmSetRatio;
-}
+using ::emdevif::stm32hal::pwmDisable;
+using ::emdevif::stm32hal::pwmEnable;
+using ::emdevif::stm32hal::PwmHandle;
+using ::emdevif::stm32hal::pwmSetRatio;
+}  // namespace emdevif::stm32hal

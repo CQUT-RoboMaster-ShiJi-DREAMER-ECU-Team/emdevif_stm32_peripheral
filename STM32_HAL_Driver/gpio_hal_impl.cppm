@@ -11,8 +11,8 @@ module;
 export module emdevif.stm32_peripheral.hal.gpio;
 
 export namespace emdevif::stm32hal {
-    using ::emdevif::stm32hal::GpioHandle;
-    using ::emdevif::stm32hal::gpioWrite;
-    using ::emdevif::stm32hal::gpioRead;
-    using ::emdevif::stm32hal::gpioToggle;
-}
+using ::emdevif::stm32hal::GpioHandle;
+using ::emdevif::stm32hal::gpioRead;
+using ::emdevif::stm32hal::gpioToggle;
+using ::emdevif::stm32hal::gpioWrite;
+}  // namespace emdevif::stm32hal

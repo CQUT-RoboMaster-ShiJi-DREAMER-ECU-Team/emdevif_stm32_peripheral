@@ -11,5 +11,5 @@ module;
 export module emdevif.stm32_peripheral.hal.can;
 
 export namespace emdevif::stm32hal {
-    using ::emdevif::stm32hal::canAddTxMessage;
+using ::emdevif::stm32hal::canAddTxMessage;
 }

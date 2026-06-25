@@ -11,7 +11,7 @@ module;
 export module emdevif.stm32_peripheral.hal.spi;
 
 export namespace emdevif::stm32hal {
-    using ::emdevif::stm32hal::spiTransmitReceiveBlock;
-    using ::emdevif::stm32hal::spiTransmitReceiveInterrupt;
-    using ::emdevif::stm32hal::spiTransmitReceiveDma;
-}
+using ::emdevif::stm32hal::spiTransmitReceiveBlock;
+using ::emdevif::stm32hal::spiTransmitReceiveDma;
+using ::emdevif::stm32hal::spiTransmitReceiveInterrupt;
+}  // namespace emdevif::stm32hal

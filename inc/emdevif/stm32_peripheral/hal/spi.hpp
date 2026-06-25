@@ -5,19 +5,18 @@
 
 #pragma once
 #ifndef EMDEVIF_STM32_PERIPHERAL_HAL_SPI_HPP
-    #define EMDEVIF_STM32_PERIPHERAL_HAL_SPI_HPP
+#define EMDEVIF_STM32_PERIPHERAL_HAL_SPI_HPP
 
-    #include <cstdint>
+#include <cstdint>
 
-        #include <span>
+#include <span>
 
-        #include "emdevif/core/attributes_and_useful_macros.h"
-        #include "emdevif/core/fatal_handler.h"
-        #include "spi.h"
+#include "emdevif/core/attributes_and_useful_macros.h"
+#include "emdevif/core/fatal_handler.h"
+#include "spi.h"
 
-        #include "emdevif/core/error_handler.hpp"
-        #include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
-
+#include "emdevif/core/error_handler.hpp"
+#include "emdevif/stm32_peripheral/hal/detail/hal_status_mapper.hpp"
 
 namespace emdevif::stm32hal {
 

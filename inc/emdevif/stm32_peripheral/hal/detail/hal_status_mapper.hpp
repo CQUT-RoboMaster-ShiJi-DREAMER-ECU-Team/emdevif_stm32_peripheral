@@ -5,13 +5,13 @@
 
 #pragma once
 #ifndef EMDEVIF_STM32_PERIPHERAL_HAL_DETAIL_HAL_STATUS_MAPPER_HPP
-    #define EMDEVIF_STM32_PERIPHERAL_HAL_DETAIL_HAL_STATUS_MAPPER_HPP
+#define EMDEVIF_STM32_PERIPHERAL_HAL_DETAIL_HAL_STATUS_MAPPER_HPP
 
-        #include <cstdint>
+#include <cstdint>
 
-        #include "main.h"
+#include "main.h"
 
-        #include "emdevif/core/error_handler.hpp"
+#include "emdevif/core/error_handler.hpp"
 
 namespace emdevif::stm32hal::detail {
 
