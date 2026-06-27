@@ -22,9 +22,10 @@ emdevif_stm32_peripheral/
 - 实现文件：`STM32_{HAL|LL}_Driver/{外设小写}_{hal|ll}_impl.cppm`
 
 ## 编码规范
-本项目开发需遵循统一编码规范，详见：
+统一编码规范位于 `rmdev-dev` 仓库的 `docs/coding-style.md`：
 
-[https://github.com/CQUT-RoboMaster-ShiJi-DREAMER-ECU-Team/rmdev-dev/blob/main/docs/emdevif-coding-style.md](https://github.com/CQUT-RoboMaster-ShiJi-DREAMER-ECU-Team/rmdev-dev/blob/main/docs/emdevif-coding-style.md)
+- 集成环境内（本仓库作为 `rmdev-dev` 子模块检出）：直接阅读 `../../docs/coding-style.md`（相对本仓库根目录）
+- 独立查看：https://github.com/CQUT-RoboMaster-ShiJi-DREAMER-ECU-Team/rmdev-dev/blob/main/docs/coding-style.md
 
 ## 构建系统
 
@@ -70,6 +71,6 @@ emdevif_stm32_peripheral/
 - 与 `peripheral_handle_map` 的键名交互需做端到端验证。
 
 ## 参考资料
-- 编码规范：[https://github.com/CQUT-RoboMaster-ShiJi-DREAMER-ECU-Team/rmdev-dev/blob/main/docs/emdevif-coding-style.md](https://github.com/CQUT-RoboMaster-ShiJi-DREAMER-ECU-Team/rmdev-dev/blob/main/docs/emdevif-coding-style.md)
+- 编码规范：见上文「编码规范」章节（集成环境内读 `../../docs/coding-style.md`）
 - 完整使用指南：`README.md`
 - 外设映射逻辑：根 `CMakeLists.txt` 中 `chooseFilesToInclude` 函数
